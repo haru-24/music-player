@@ -7,7 +7,5 @@ import { useAuth } from "./hooks/useAuth";
 const code = new URLSearchParams(window.location.search).get("code");
 
 export const App = () => {
-  const accessToken = useAuth(code);
-
   return code ? <Dashbord code={code} /> : <Login />;
 };

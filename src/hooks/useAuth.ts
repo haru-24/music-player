@@ -1,22 +1,26 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-interface Props {
-  code: string;
+
+interface ResponseTokenData {
+  accessToken: string;
+  refreshToken: string;
+  exporesIn: string;
 }
 
-export const useAuth = (props: Props) => {
-  const { code } = props;
-  const [accessToken, setAccessToken] = useState();
-  const [refreshToken, setRefreshToken] = useState();
-  const [expiresIn, setExpiresIn] = useState();
+export const useAuth = (code: null | string) => {
+  const [accessToken, setAccessToken] = useState("");
+  const [refreshToken, setRefreshToken] = useState("");
+  const [expiresIn, setExpiresIn] = useState("");
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/login", {
+      .post<ResponseTokenData>("http://localhost:8000/login", {
         code,
       })
       .then((res) => {
-        console.log(res);
+        setAccessToken(res.data.accessToken);
+        setRefreshToken(res.data.refreshToken);
+        setExpiresIn(res.data.exporesIn);
         window.history.pushState({}, null as any, "/");
       })
       .catch((err) => {});

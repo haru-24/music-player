@@ -13,20 +13,7 @@ const scopes = [
   "user-modify-playback-state",
 ];
 
-export const tokenFromUrl = () => {
-  return window.location.hash
-    .substring(1)
-    .split("&")
-    .reduce((initial: any, item) => {
-      let parts = item.split("=");
-      initial[parts[0]] = decodeURIComponent(parts[1]);
-      return initial;
-    }, {});
-};
-
 // SpotifyのログインページのURL
 export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
   "%20"
-)}&response_type=token&show_dialog=true`;
-
-console.log(accessUrl);
+)}&response_type=code&show_dialog=true`;

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Login } from "./components/Login";
 import { Dashbord } from "./components/Dashbord";
-import { tokenFromUrl } from "./config/Spotify";
+
 import { useAuth } from "./hooks/useAuth";
 
-const code = tokenFromUrl().access_token;
+const code = new URLSearchParams(window.location.search).get("code");
+
 export const App = () => {
   const accessToken = useAuth(code);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { accessUrl } from "../config/Spotify";
+import { accessUrl } from "../config/spotify";
 
 export const Login = () => {
   return (

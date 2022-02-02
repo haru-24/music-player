@@ -1,6 +1,7 @@
 import React from "react";
+
 interface Props {
-  code: string;
+  code: string | null;
 }
 
 export const Dashbord = (props: Props) => {

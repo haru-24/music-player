@@ -30,29 +30,31 @@ export const Dashbord = (props: Props) => {
   const [palyingTrack, setPlayingTrack] = useState<ResponseTrackData>();
   const [lyrics, setLyrics] = useState("");
 
+  // トラックの選択
   const chooseTrack = (track: ResponseTrackData) => {
     setPlayingTrack(track);
     setsearch("");
     setLyrics("");
   };
 
+  // 歌詞の取得
   useEffect(() => {
     if (!palyingTrack) return;
     axios
-      .get("http://localhost:8000", {
+      .get("http://localhost:8000/lyrics", {
         params: {
           track: palyingTrack.title,
-          aritist: palyingTrack.artist,
         },
       })
       .then((res) => {
-        setLyrics(res.data.lyrick);
+        setLyrics(res.data.lyrics);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [palyingTrack]);
 
+  // アクセストークンの保存
   useEffect(() => {
     if (!accessToken) return;
     spotifyApi.setAccessToken(accessToken);
@@ -101,9 +103,13 @@ export const Dashbord = (props: Props) => {
           />
         ))}
         {searchResult.length === 0 && (
-          <div className="text-center" style={{ whiteSpace: "pre" }}>
+          <a
+            className="text-center"
+            style={{ whiteSpace: "pre" }}
+            href={lyrics}
+          >
             {lyrics}
-          </div>
+          </a>
         )}
       </div>
       <div>

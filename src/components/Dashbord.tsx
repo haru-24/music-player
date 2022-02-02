@@ -86,6 +86,7 @@ export const Dashbord = (props: Props) => {
   return (
     <Container>
       <Form.Control
+        style={{ margin: "10px" }}
         type="search"
         placeholder="search Songs / Artists"
         value={search}
@@ -93,7 +94,7 @@ export const Dashbord = (props: Props) => {
           setsearch(e.target.value)
         }
       />
-      {/* <button onClick={searchTracks}>検索</button> */}
+
       <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
         {searchResult.map((track) => (
           <TrackSearchResult

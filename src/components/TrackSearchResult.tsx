@@ -16,13 +16,23 @@ export const TrackSearchResult = (props: Props) => {
     <>
       <div
         className="d-flex m-2 align-items-center"
-        style={{ cursor: "pointer" }}
+        style={{
+          cursor: "pointer",
+          display: "flex",
+          margin: "10px",
+          borderBottom: "solid 1px gray",
+        }}
         onClick={handlePlay}
       >
         <img src={track.albumUrl} style={{ height: "64px", width: "64px" }} />
-        <div className="ml-3">
-          <div>{track.title}</div>
-          <div className="text-muted"> {track.artist}</div>
+        <div
+          style={{
+            marginLeft: "10px",
+            marginTop: "10px",
+          }}
+        >
+          <div style={{ color: "gray" }}>{track.title}</div>
+          <div> {track.artist}</div>
         </div>
       </div>
     </>
